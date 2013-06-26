@@ -8,11 +8,18 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <script src="/nowjs/now.js"></script>
 </head>
-<body class="disconnected">
+<body class="">
 
 <div id="streaming">
   <img id="tv" src="img/tv.png"/>
   <p>Connecting to Display ...</p>
+
+  <div id="polaroid">
+    <div id="preview">
+      <img src=""/>
+    </div>
+
+  </div>
 </div>
 
 <div id="footer">
@@ -212,6 +219,39 @@ div{
   -webkit-transition: padding 0s ease-in-out;
 }
 
+#polaroid{
+  position: fixed;
+  top: 20px;
+  left: 10px;
+  right: 10px;
+  height: 400px;
+  background-color: white;
+  border-radius: 2px;
+  padding: 15px;
+
+  -webkit-transform: translateY(500px);
+  -webkit-transition: -webkit-transform 0s ease-in-out;
+}
+
+#polaroid.show{
+  -webkit-transform: translateY(0px);
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+}
+
+#polaroid #preview{
+  width: 100%;
+  height: 250px;
+  background-color: #222;
+  overflow: hidden;
+
+}
+
+#preview img{
+  width 100%;
+  -webkit-transform: scaleX(-1);
+  -webkit-filter: blur(85px) hue-rotate(0deg) sepia(60%) grayscale(30%);
+}
+
 </style>
 <script>
 $(function() {
@@ -242,8 +282,10 @@ $(document).ready(function(){
 
     now.receiveMessage = function(name, command){
       if (name == 'Display'){
-        $('#photos img')[0].src = command;
-        $('#photos').css('opacity', 1);
+        //$('#photos img')[0].src = command;
+        //$('#photos').css('opacity', 1);
+        $('#polaroid img')[0].src = command;
+        $('#polaroid').addClass('show');
       }
     }
 
