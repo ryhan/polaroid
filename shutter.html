@@ -229,8 +229,10 @@ div{
   border-radius: 2px;
   padding: 15px;
 
+  opacity: 0;
+
   -webkit-transform: translateY(500px);
-  -webkit-transition: -webkit-transform 0s ease-in-out;
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
 }
 
 #polaroid.show{
@@ -243,13 +245,14 @@ div{
   height: 250px;
   background-color: #222;
   overflow: hidden;
+  box-shadow: inset 0 1px 2px black;
 
 }
 
 #preview img{
   position: relative;
   width: 280px;
-  -webkit-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1) scale(1.1);
   -webkit-filter: blur(2px) hue-rotate(0deg) sepia(60%) grayscale(30%);
 }
 
@@ -286,6 +289,8 @@ $(document).ready(function(){
         //$('#photos img')[0].src = command;
         //$('#photos').css('opacity', 1);
         $('#polaroid img')[0].src = command;
+        $('#polaroid').css('opacity', 1);
+        $('#polaroid').removeClass('show');
         $('#polaroid').addClass('show');
       }
     }
