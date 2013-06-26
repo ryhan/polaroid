@@ -343,7 +343,7 @@ $(document).ready(function(){
       }
       if (command == 'take-picture'){
         snapshot();
-        now.distributeMessage($('canvas')[0].toDataURL('image/jpeg', 0.1));
+        now.distributeMessage($('canvas')[0].toDataURL('image/jpeg', 1));
       }
     }
   });
