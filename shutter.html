@@ -8,11 +8,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <script src="/nowjs/now.js"></script>
 </head>
-<body>
+<body class="disconnected">
 
 <div id="streaming">
   <img id="tv" src="img/tv.png"/>
-  <p>Connected to "Ryhan's Display"</p>
+  <p>Connecting to "Ryhan's Display" ...</p>
 </div>
 
 <div id="footer">
@@ -25,6 +25,7 @@
     <!--<div class="shutter-button"></div>-->
   </div>
 </div>
+
 
 
 <style>
@@ -57,6 +58,12 @@ div{
   box-sizing: border-box;
 }
 
+.disconnected #footer{
+  -webkit-transform: translateY(150px);
+  -webkit-transition: all 0.5 ease-in-out;
+}
+
+
 #footer{
   -webkit-touch-callout: none;
   position: fixed;
@@ -71,6 +78,7 @@ div{
     0 1px 3px #000,
     inset 0 1px 0 rgba(255,255,255,0.15);
   padding-top: 10px;
+  -webkit-transition: all 0.5 ease-in-out;
 }
 
 #shutter{
@@ -141,7 +149,8 @@ div{
   top: 0;
   left: 0;
   right: 0;
-  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 
@@ -182,12 +191,19 @@ div{
   top: 0;
   left: 0;
   right: 0;
-  height: 400px;
+  height: 800px;
   margin: 0;
 
-  background: -webkit-linear-gradient(top, #000, #222);
+  background: -webkit-linear-gradient(top, #000, #444);
 
   padding-top: 85px;
+
+  -webkit-transition: all 0.5 ease-in-out;
+}
+
+.disconnected #streaming{
+  padding-top: 140px;
+  -webkit-transition: all 0.5 ease-in-out;
 }
 
 </style>
@@ -200,6 +216,9 @@ $(function() {
 $(document).ready(function(){
 
   now.ready(function(){
+
+    $('body').removeClass('disconnected');
+    $('#streaming p').text('Connected to "Ryhan\'s Display"');
 
     console.log("ready");
 
@@ -217,7 +236,7 @@ $(document).ready(function(){
 
     now.receiveMessage = function(name, command){
       if (name == 'Display'){
-        console.log(command);
+        $('#photos img')[0].src = command;
       }
     }
 
