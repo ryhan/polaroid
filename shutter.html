@@ -60,7 +60,7 @@ div{
 
 .disconnected #footer{
   -webkit-transform: translateY(150px);
-  -webkit-transition: all 0.5 ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
 }
 
 
@@ -78,7 +78,8 @@ div{
     0 1px 3px #000,
     inset 0 1px 0 rgba(255,255,255,0.15);
   padding-top: 10px;
-  -webkit-transition: all 0.5 ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  -webkit-transform: translateY(0px);
 }
 
 #shutter{
@@ -142,6 +143,7 @@ div{
   cursor: pointer;
 
   overflow: hidden;
+  opacity: 0;
 }
 
 #photos img{
@@ -149,8 +151,7 @@ div{
   top: 0;
   left: 0;
   right: 0;
-  min-width: 100%;
-  min-height: 100%;
+  width: 65px;
 }
 
 
@@ -198,12 +199,12 @@ div{
 
   padding-top: 85px;
 
-  -webkit-transition: all 0.5 ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
 }
 
 .disconnected #streaming{
   padding-top: 140px;
-  -webkit-transition: all 0.5 ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
 }
 
 </style>
@@ -237,6 +238,7 @@ $(document).ready(function(){
     now.receiveMessage = function(name, command){
       if (name == 'Display'){
         $('#photos img')[0].src = command;
+        $('#photos').css('opacity', 1);
       }
     }
 
