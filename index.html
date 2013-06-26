@@ -1,0 +1,337 @@
+<!doctype html>
+<html>
+<head>
+  <title>Polaroid Prototype</title>
+  <script src="js/jquery.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/polaroid.css"/>
+</head>
+<body>
+
+
+  <div id="content" class="camera-mode">
+
+    <div id="camera">
+      <video autoplay  width=800></video>
+      <canvas style="display:none;" width=500 height=500 ></canvas>
+      <div id="marks">
+        <div class="mark mark-tl"></div>
+        <div class="mark mark-tr"></div>
+        <div class="mark mark-bl"></div>
+        <div class="mark mark-br"></div>
+        <div class="mark mark-circle"></div>
+      </div>
+      <div class="shot-overlay">
+      </div>
+    </div>
+
+    <div id="polaroids">
+      <!--
+      <div class="polaroid">
+        <div class="image"></div>
+      </div>
+      <div class="polaroid">
+        <div class="image"></div>
+      </div>
+    -->
+    </div>
+
+    <div id="toggle"></div>
+
+  </div>
+
+
+
+<style>
+body{
+  background-color: black;
+}
+div{
+   box-sizing: border-box;
+}
+#camera{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-height: 100%;
+}
+.shot-overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  opacity: 0;
+  -webkit-transition: 0.05s;
+}
+
+#camera.shot .shot-overlay{
+  opacity: 0.9;
+  -webkit-transition: 0.1s;
+}
+video{
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(85px) hue-rotate(0deg) sepia(60%) grayscale(30%);
+  -webkit-transition: all ease-in 2s;
+  -webkit-transform: scaleX(-1);
+  opacity: 0.4;
+}
+
+
+#marks{
+  position: fixed;
+  top: 15%;
+  margin: 0 auto;
+  left: 20%;
+  right: 20%;
+  bottom:  15%;
+  vertical-align: center;
+  text-align: center;
+
+  opacity: 0;
+  -webkit-transition: all ease-in 0.2s 1s;
+}
+
+.camera-mode #marks{
+  opacity: 1;
+}
+
+.mark{
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border: 3px solid rgba(100, 100, 100, 0.8);
+  border: 3px solid rgba(0,0,0,0.5);
+  border-radius: 5px;
+  position: absolute;
+}
+.mark.mark-tl{
+  top: 0;
+  left: 0;
+  border-bottom: none;
+  border-right: none;
+}
+.mark.mark-tr{
+  top: 0;
+  right: 0;
+  border-bottom: none;
+  border-left: none;
+}
+.mark.mark-bl{
+  bottom: 0;
+  left: 0;
+  border-top: none;
+  border-right: none;
+}
+.mark.mark-br{
+  bottom: 0;
+  right: 0;
+  border-top: none;
+  border-left: none;
+}
+.mark.mark-circle{
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  left: calc(50% - 150px);
+  top: calc(50% - 150px);
+  border-radius: 2000px;
+}
+.camera-mode video{
+  -webkit-filter: blur(5px) hue-rotate(10deg) sepia(40%) grayscale(0%);
+  opacity: 1;
+  -webkit-transition: all ease-in 2s;
+   -webkit-animation: focus 4s infinite 4s;
+}
+#polaroids{
+  vertical-align: top;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  padding: 200px 250px;
+  -webkit-perspective: 2000px;
+  -webkit-perspective-origin: center top;
+  -webkit-transition: all ease-in-out 0.5s 1s;
+  z-index: 10;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.camera-mode #polaroids{
+  -webkit-perspective: 1000px;
+  -webkit-transform: translateY(2500px);
+  opacity: 0;
+
+}
+.polaroid{
+  display: inline-block;
+  width: 264px;
+  height: 321px;
+  background-color: #E8E5E3;
+  border-radius: 2px;
+  margin: 10px;
+  box-shadow:
+  inset 0 3px 5px white,
+    0 3px 8px rgba(0,0,0,0.2);
+  padding: 12px;
+  -webkit-transform: rotateX(0deg);
+  -webkit-transition: all ease-in-out 0.5s 1s;
+}
+
+.polaroid:nth-child(3n){
+  -webkit-filter: hue-rotate(10deg);
+}
+.polaroid:nth-child(4n){
+  -webkit-filter: grayscale(100%);
+}
+.polaroid:nth-child(5n){
+  -webkit-filter: hue-rotate(30deg);
+}
+
+.camera-mode .polaroid{
+  -webkit-transition: all ease-in-out 0.5s 1s;
+  -webkit-transform: rotateX(-5deg) scale(2);
+}
+
+.camera-mode .polaroid:nth-child(3n + 1){
+  -webkit-transition: all ease-out 0.1s 0.9s;
+  -webkit-transform: translateY(-20px) rotateX(-5deg) rotateZ(5deg) scale(1.02);
+}
+.camera-mode .polaroid:nth-child(3n + 2){
+  -webkit-transition: all ease-out 0.05s 0.95s;
+  -webkit-transform: translateY(-10px) rotateX(-10deg) rotateZ(-15deg) scale(1.05);
+}
+.camera-mode .polaroid:nth-child(3n + 0){
+  -webkit-transition: all ease-out 0.15s 0.85s;
+  -webkit-transform: translateY(-15px) rotateX(-5deg) rotateZ(3deg) scale(1.1);
+}
+.polaroid .image{
+  background-color: black;
+  box-shadow: inset 0 1px 2px black;
+  height: 240px;
+  width: 240px;
+  overflow: hidden;
+  -webkit-transform: scaleX(-1);
+}
+.polaroid .image img{
+  -webkit-transform: scale(1.1);
+  height: 100%;
+  -webkit-filter: blur(2px) hue-rotate(10deg) sepia(60%) grayscale(10%);
+}
+
+
+/*
+video{
+  -webkit-filter: blur(15px) hue-rotate(10deg) sepia(50%);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-height: 100%;
+  -webkit-animation: focus 8s infinite ;
+}
+
+img{
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  max-height: 100%;
+  opacity: 0.3;
+}
+
+*/
+@-webkit-keyframes focus{
+  0%, 50%, 100%   { -webkit-filter: blur(5px) hue-rotate(30deg) sepia(20%) brightness(100%);}
+  20%   { -webkit-filter: blur(10px) hue-rotate(30deg) sepia(30%) brightness(95%);}
+  30% { -webkit-filter: blur(20px) hue-rotate(20deg) sepia(10%) brightness(120%);}
+
+}
+
+/*
+  video,
+  img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 800px;
+  }
+  img{
+    width: 1000px;
+    opacity: 0.5;
+  }
+*/
+
+  #toggle{
+    display: inline-block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    box-sizing: content-box;
+    border: 50px solid black;
+    border-top: 50px solid transparent;
+    border-right: 50px solid transparent;
+    z-index: 99999999;
+
+  }
+
+</style>
+
+<script>
+
+
+
+var video = document.querySelector('video');
+var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext('2d');
+var localMediaStream = null;
+
+var onFailSoHard = function(e) {
+    console.log('Reeeejected!', e);
+  };
+
+
+function snapshot() {
+  if (localMediaStream) {
+    console.log('shot');
+    $('#camera').addClass('shot');
+    setTimeout(function(){$('#camera').removeClass('shot');}, 200);
+    ctx.drawImage(video, 0, 0);
+    // "image/webp" works in Chrome 18. In other browsers, this will fall back to image/png.
+    //document.querySelector('img').src = canvas.toDataURL('image/png');
+
+
+    var img = $('<img src="'+ canvas.toDataURL('image/png') + '" />');
+    var imgdiv = $('<div class="image"/>').append(img);
+    var polaroid = $('<div class="polaroid"/>').append(imgdiv);
+    $('#polaroids').prepend(polaroid);
+  }
+}
+
+//video.addEventListener('click', snapshot, false);
+$('#camera')[0].addEventListener('click', snapshot, false);
+$('#toggle').click(function(){
+  $('#content').toggleClass('camera-mode');
+});
+
+// Not showing vendor prefixes or code that works cross-browser.
+navigator.webkitGetUserMedia({video: true}, function(stream) {
+  video.src = window.URL.createObjectURL(stream);
+  localMediaStream = stream;
+}, onFailSoHard);
+
+</script>
+
+
+</body>
