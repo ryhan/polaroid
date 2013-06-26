@@ -3,7 +3,8 @@
 <head>
   <title>Polaroid Prototype</title>
   <script src="js/jquery.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/polaroid.css"/>
+  <script src="/nowjs/now.js"></script>
+  <!--<link rel="stylesheet" type="text/css" href="css/polaroid.css"/>-->
 </head>
 <body>
 
@@ -298,9 +299,8 @@ var ctx = canvas.getContext('2d');
 var localMediaStream = null;
 
 var onFailSoHard = function(e) {
-    console.log('Reeeejected!', e);
-  };
-
+  console.log('Reeeejected!', e);
+};
 
 function snapshot() {
   if (localMediaStream) {
@@ -331,6 +331,19 @@ navigator.webkitGetUserMedia({video: true}, function(stream) {
   localMediaStream = stream;
 }, onFailSoHard);
 
+
+$(document).ready(function(){
+  now.name = "Display";
+  now.receiveMessage = function(name, command){
+    console.log(command);
+    if (command == 'toggle-camera'){
+      $('#content').toggleClass('camera-mode');
+    }
+    if (command == 'take-picture'){
+      snapshot();
+    }
+  }
+});
 </script>
 
 
