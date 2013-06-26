@@ -193,7 +193,12 @@ $(document).ready(function(){
 
   $('#shutter').bind('touchstart', function(){
     //console.log('hi');
-    now.distributeMessage('take-picture');
+    now.distributeMessage('take-picture')
+  });
+
+  $('#streaming').bind('touchstart', function(){
+    //console.log('hi');
+    now.distributeMessage('toggle-camera')
   });
 
 });
