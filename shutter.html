@@ -12,7 +12,7 @@
 
 <div id="streaming">
   <img id="tv" src="img/tv.png"/>
-  <p>Connecting to "Ryhan's Display" ...</p>
+  <p>Connecting to Display ...</p>
 </div>
 
 <div id="footer">
@@ -58,10 +58,7 @@ div{
   box-sizing: border-box;
 }
 
-.disconnected #footer{
-  -webkit-transform: translateY(150px);
-  -webkit-transition: all 0.5s ease-in-out;
-}
+
 
 
 #footer{
@@ -78,8 +75,13 @@ div{
     0 1px 3px #000,
     inset 0 1px 0 rgba(255,255,255,0.15);
   padding-top: 10px;
-  -webkit-transition: all 0.5s ease-in-out;
+   -webkit-transition: -webkit-transform 0.5s ease-in-out;
   -webkit-transform: translateY(0px);
+}
+
+.disconnected #footer{
+  -webkit-transform: translateY(150px);
+  -webkit-transition: -webkit-transform 0s ease-in-out;
 }
 
 #shutter{
@@ -127,13 +129,14 @@ div{
   top: 10px;
 
   left: 25px;
-  top: 15px;
+  left: 15px;
+  top: 20px;
 
   border-radius: 2000px;
-  border-radius: 15px;
+  border-radius: 4px;
   display: inline-block;
-  width: 65px;
-  height: 65px;
+  width: 50px;
+  height: 50px;
 
   margin: 10px auto;
   border: 2px solid #000;
@@ -151,7 +154,7 @@ div{
   top: 0;
   left: 0;
   right: 0;
-  width: 65px;
+  width: 50px;
 }
 
 
@@ -199,12 +202,14 @@ div{
 
   padding-top: 85px;
 
-  -webkit-transition: all 0.5s ease-in-out;
+  -webkit-transition: padding 0.5s ease-in-out;
 }
 
 .disconnected #streaming{
   padding-top: 140px;
-  -webkit-transition: all 0.5s ease-in-out;
+  color: #888;
+  font-weight:  bold;
+  -webkit-transition: padding 0s ease-in-out;
 }
 
 </style>
