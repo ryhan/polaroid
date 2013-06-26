@@ -189,17 +189,25 @@ $(function() {
 });
 
 $(document).ready(function(){
-  now.name = "Control";
 
-  $('#shutter').bind('touchstart', function(){
-    //console.log('hi');
-    now.distributeMessage('take-picture')
+  now.ready(function(){
+
+    console.log("ready");
+
+    now.name = "Control";
+
+    $('#shutter').bind('touchstart', function(){
+      //console.log('hi');
+      now.distributeMessage('take-picture')
+    });
+
+    $('#streaming').bind('touchstart', function(){
+      //console.log('hi');
+      now.distributeMessage('toggle-camera')
+    });
+
   });
 
-  $('#streaming').bind('touchstart', function(){
-    //console.log('hi');
-    now.distributeMessage('toggle-camera')
-  });
 
 });
 </script>

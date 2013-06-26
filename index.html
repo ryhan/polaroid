@@ -333,16 +333,19 @@ navigator.webkitGetUserMedia({video: true}, function(stream) {
 
 
 $(document).ready(function(){
-  now.name = "Display";
-  now.receiveMessage = function(name, command){
-    console.log(command);
-    if (command == 'toggle-camera'){
-      $('#content').toggleClass('camera-mode');
+  now.ready(function(){
+    console.log("ready");
+    now.name = "Display";
+    now.receiveMessage = function(name, command){
+      console.log(command);
+      if (command == 'toggle-camera'){
+        $('#content').toggleClass('camera-mode');
+      }
+      if (command == 'take-picture'){
+        snapshot();
+      }
     }
-    if (command == 'take-picture'){
-      snapshot();
-    }
-  }
+  });
 });
 </script>
 
