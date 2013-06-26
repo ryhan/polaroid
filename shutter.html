@@ -279,7 +279,7 @@ $(document).ready(function(){
       now.distributeMessage('take-picture')
     });
 
-    $('#photos').bind('touchstart', function(){
+    $('#polaroid').bind('touchstart', function(){
       //console.log('hi');
       now.distributeMessage('toggle-camera')
     });
@@ -288,10 +288,10 @@ $(document).ready(function(){
       if (name == 'Display'){
         //$('#photos img')[0].src = command;
         //$('#photos').css('opacity', 1);
-        $('#polaroid img')[0].src = command;
         $('#polaroid').css('opacity', 1);
         $('#polaroid').removeClass('show');
         setTimeout(function(){
+          $('#polaroid img')[0].src = command;
           $('#polaroid').addClass('show');
         }, 400);
 
