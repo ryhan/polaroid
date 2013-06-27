@@ -18,9 +18,9 @@
   <div id="connected">
     <ul>
       <li class="head"><img src="img/checkmark_green.png"/><strong>You're all set up</strong></li>
-      <li><img src="img/checkmark_white_1.png"/>Look up at the camera.</li>
-      <li><img src="img/checkmark_white_2.png"/>Grab a friend and smile.</li>
-      <li><img src="img/checkmark_white_3.png"/>Tap to take a picture.</li>
+      <li><img src="img/checkmark_white_1.png"/>Look up at the camera</li>
+      <li><img src="img/checkmark_white_2.png"/>Grab a friend and smile</li>
+      <li><img src="img/checkmark_white_3.png"/>Tap to take a picture</li>
     </ul>
   </div>
 
@@ -86,6 +86,7 @@ div{
 
 }
 #connecting{
+  padding-top: 140px;
   -webkit-transform: translateX(-600px);
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
 }
@@ -103,20 +104,23 @@ div{
 }
 
 #connected li img{
-  width: 28px;
+  width: 30px;
   margin-right: 10px;
   vertical-align: text-bottom;
   position: relative;
-  top: 5px;
+  top: 4px;
 
-  opacity: 0.5;
+  font-weight: bold;
+
+  opacity: 0.8;
 }
 #connected li.head img{
-  opacity: 0.9;
+  opacity: 1;
 }
 #connected li.head{
   padding-bottom: 15px;
   color: #DDD;
+  font-size: 23px;
 }
 
 ul{
@@ -124,7 +128,7 @@ ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 40px;
   font-weight: normal;
   color: #CCC;
@@ -230,38 +234,6 @@ ul{
 }
 
 
-/*
-.shutter-button{
-  border-radius: 2000px;
-  width: 70px;
-  height: 70px;
-
-  background: -webkit-linear-gradient(top, #FFF, #CCC);
-  background: -webkit-linear-gradient(top, #5E5E5E, #444);
-  box-shadow:
-    inset 0 2px 3px white,
-    inset 0 -1px 2px rgba(0,0,0,0.3);
-
-    box-shadow:
-    inset 0 2px 3px rgba(255,255,255,0.1),
-    inset 0 -1px 2px rgba(0,0,0,0.3);
-
-  border: 1px solid #222;
-  /*
-  background: -webkit-linear-gradient(top, #333, #222);
-  box-shadow: inset 0 2px 3px black;
-  */
-/*
-  cursor: pointer;
-
-}
-#shutter:active .shutter-button{
-  background: -webkit-linear-gradient(top, #BBB, #DDD);
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
-
-}
-*/
-
 #streaming{
   position: fixed;
   top: 0;
@@ -273,15 +245,12 @@ ul{
   background: -webkit-linear-gradient(top, #000, #444);
 
   padding-top: 85px;
-
-  -webkit-transition: padding 0.5s ease-in-out;
 }
 
 .disconnected #streaming{
   padding-top: 140px;
   color: #888;
   font-weight:  bold;
-  -webkit-transition: padding 0s ease-in-out;
 }
 
 #polaroid{
