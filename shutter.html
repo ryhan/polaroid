@@ -16,12 +16,18 @@
     <p>Connecting to Display ...</p>
   </div>
   <div id="connected">
+    <img src="img/checkmark_green.png"/><strong>Setup Complete</strong>
+    <!--
     <ul>
       <li class="head"><img src="img/checkmark_green.png"/><strong>You're all set up</strong></li>
       <li><img src="img/checkmark_white_1.png"/>Look up at the camera</li>
       <li><img src="img/checkmark_white_2.png"/>Grab a friend and smile</li>
       <li><img src="img/checkmark_white_3.png"/>Tap to take a picture</li>
     </ul>
+  -->
+  </div>
+  <div id="processing">
+    <strong>Processing...</strong>
   </div>
 
   <div id="polaroid">
@@ -97,12 +103,40 @@ div{
 #connected{
   -webkit-transform: translateX(0px);
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  padding-top: 150px;
+  color: #DDD;
+  font-size: 20px;
 }
 .disconnected #connected{
   -webkit-transform: translateX(600px);
   -webkit-transition: -webkit-transform 0s ease-in-out;
 }
+.processing #connected{
+  -webkit-transform: translateX(-600px);
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+}
 
+#processing{
+  -webkit-transform: translateX(600px);
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+  padding-top: 80px;
+  color: #888;
+  font-size: 20px;
+  font-weight: normal;
+}
+.processing #processing{
+  -webkit-transform: translateX(0px);
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+}
+
+#connected img{
+  width: 40px;
+  position: relative;
+  top: 10px;
+  left: -10px;
+}
+
+/*
 #connected li img{
   width: 30px;
   margin-right: 10px;
@@ -136,6 +170,7 @@ ul{
   width: 250px;
   text-align: left;
 }
+*/
 
 #footer{
   -webkit-touch-callout: none;
@@ -312,6 +347,7 @@ $(document).ready(function(){
       //console.log('hi');
       now.distributeMessage('take-picture');
       $('#polaroid').removeClass('show');
+      $('body').addClass('processing');
     });
 
     $('#polaroid').bind('touchstart', function(){
