@@ -11,8 +11,18 @@
 <body class="disconnected">
 
 <div id="streaming">
-  <img id="tv" src="img/tv.png"/>
-  <p>Connecting to Display ...</p>
+  <div id="connecting">
+    <img id="tv" src="img/tv.png"/>
+    <p>Connecting to Display ...</p>
+  </div>
+  <div id="connected">
+    <ul>
+      <li class="head"><img src="img/checkmark_green.png"/><strong>You're all set up</strong></li>
+      <li><img src="img/checkmark_white_1.png"/>Look up at the camera.</li>
+      <li><img src="img/checkmark_white_2.png"/>Grab a friend and smile.</li>
+      <li><img src="img/checkmark_white_3.png"/>Tap to take a picture.</li>
+    </ul>
+  </div>
 
   <div id="polaroid">
     <div id="preview">
@@ -65,8 +75,63 @@ div{
   box-sizing: border-box;
 }
 
+#connecting, #connected{
+  position: absolute;
+  width: 100%;
+  padding-top: 100px;
+  top: 0;
+  left: 0;
 
+  text-align: center;
 
+}
+#connecting{
+  -webkit-transform: translateX(-600px);
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+}
+.disconnected #connecting{
+  -webkit-transform: translateX(0px);
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+}
+#connected{
+  -webkit-transform: translateX(0px);
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+}
+.disconnected #connected{
+  -webkit-transform: translateX(600px);
+  -webkit-transition: -webkit-transform 0s ease-in-out;
+}
+
+#connected li img{
+  width: 28px;
+  margin-right: 10px;
+  vertical-align: text-bottom;
+  position: relative;
+  top: 5px;
+
+  opacity: 0.5;
+}
+#connected li.head img{
+  opacity: 0.9;
+}
+#connected li.head{
+  padding-bottom: 15px;
+  color: #DDD;
+}
+
+ul{
+  display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: normal;
+  color: #CCC;
+
+  width: 250px;
+  text-align: left;
+}
 
 #footer{
   -webkit-touch-callout: none;
@@ -82,7 +147,7 @@ div{
     0 1px 3px #000,
     inset 0 1px 0 rgba(255,255,255,0.15);
   padding-top: 10px;
-   -webkit-transition: -webkit-transform 0.5s ease-in-out;
+   -webkit-transition: -webkit-transform 1s ease-in-out;
   -webkit-transform: translateY(0px);
 }
 
@@ -276,7 +341,8 @@ $(document).ready(function(){
 
     $('#shutter').bind('touchstart', function(){
       //console.log('hi');
-      now.distributeMessage('take-picture')
+      now.distributeMessage('take-picture');
+      $('#polaroid').removeClass('show');
     });
 
     $('#polaroid').bind('touchstart', function(){
@@ -288,13 +354,10 @@ $(document).ready(function(){
       if (name == 'Display'){
         //$('#photos img')[0].src = command;
         //$('#photos').css('opacity', 1);
-        $('#polaroid').css('opacity', 1);
-        $('#polaroid').removeClass('show');
-        setTimeout(function(){
-          $('#polaroid img')[0].src = command;
-          $('#polaroid').addClass('show');
-        }, 400);
 
+        $('#polaroid').css('opacity', 1);
+        $('#polaroid img')[0].src = command;
+        $('#polaroid').addClass('show');
       }
     }
 

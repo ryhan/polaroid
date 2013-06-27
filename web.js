@@ -20,6 +20,10 @@ var server = http.createServer(function(req, response)
     /* IMAGES */
     '/img/camera.png': ['/img/camera.png', 'image/png'],
     '/img/tv.png': ['/img/tv.png', 'image/png'],
+    '/img/checkmark_green.png': ['/img/checkmark_green.png', 'image/png'],
+    '/img/checkmark_white_1.png': ['/img/checkmark_white_1.png', 'image/png'],
+    '/img/checkmark_white_2.png': ['/img/checkmark_white_2.png', 'image/png'],
+    '/img/checkmark_white_3.png': ['/img/checkmark_white_3.png', 'image/png'],
 
   }[req.url];
 
