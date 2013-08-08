@@ -33,9 +33,10 @@
   <div id="polaroid">
     <div id="preview">
       <img src=""/>
+      <div id="seeall">View All</div>
     </div>
     <br/>
-    <strong>M3 Studio Night</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tap to see all
+    <em>M3 Studio Night</em><!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tap to see all-->
 
   </div>
 </div>
@@ -88,6 +89,23 @@ div{
   box-sizing: border-box;
 }
 
+#seeall{
+  position: absolute;
+  top: 180px;
+  left: 40px;
+  right: 40px;
+  background-color: red;
+
+  background-color: rgba(0,0,0,0.5);
+  background: -webkit-linear-gradient(top, rgba(50,50,50,0.5), rgba(0,0,0,0.5));
+  border: 5px solid black;
+  border-radius: 25px;
+  padding: 10px 20px;
+
+  font-weight: bold;
+  color: #888;
+
+}
 #connecting, #connected{
   position: absolute;
   width: 100%;
