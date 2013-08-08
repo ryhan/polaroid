@@ -33,10 +33,11 @@
   <div id="polaroid">
     <div id="preview">
       <img src=""/>
-      <div id="seeall">View All</div>
+      <!--<div id="seeall">View All</div>-->
     </div>
     <br/>
-    <em>M3 Studio Night</em><!--&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tap to see all-->
+    <!-- <em>M3 Studio Night</em>-->
+    <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Tap to see all-->
 
   </div>
 </div>
@@ -325,7 +326,7 @@ ul{
 
   opacity: 0;
 
-  -webkit-transform: translateY(500px);
+  -webkit-transform: translateY(500px) rotate(40deg);;
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
 
   height: 400px;
@@ -333,10 +334,20 @@ ul{
   box-sizing: border-box;
 }
 
+@-webkit-keyframes wiggle{
+  0%   { -webkit-transform: translateY(0px);}
+  3% { -webkit-transform: translateY(50px);}
+  6% { -webkit-transform: translateY(-25px);}
+  9% { -webkit-transform: translateY(10px);}
+  10%, 100% { -webkit-transform: translateY(0px); }
+}
+
 #polaroid.show{
   opacity: 1;
   -webkit-transform: translateY(0px);
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
+
+  -webkit-animation: wiggle 5s infinite 0.5s;
 }
 
 #polaroid.onscreen{
@@ -392,7 +403,7 @@ $(document).ready(function(){
     $('#shutter').bind('touchstart', function(){
       //console.log('hi');
       now.distributeMessage('take-picture');
-      $('#processing strong').text("Processing...");
+      $('#processing strong').text("Capturing...");
       $('#polaroid').removeClass('show');
       $('#polaroid').removeClass('onscreen');
       $('body').addClass('processing');
