@@ -345,7 +345,7 @@ $(document).ready(function(){
         if ($('#content').hasClass('camera-mode')){
           snapshot();
           now.distributeMessage($('canvas')[0].toDataURL('image/jpeg', 1));
-          $('#content').removeClass('camera-mode');
+          // $('#content').removeClass('camera-mode');
         }else{
           $('#content').addClass('camera-mode');
         }
