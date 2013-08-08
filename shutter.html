@@ -341,6 +341,7 @@ $(document).ready(function(){
   // Fake it
   /*
   $('body').removeClass('disconnected');
+  $('body').addClass('processing');
   $('#streaming p').text('Connected to "Ryhan\'s Display"');
   $('#polaroid').css('opacity', 1);
   $('#polaroid img')[0].src = "foo";
@@ -359,13 +360,17 @@ $(document).ready(function(){
     $('#shutter').bind('touchstart', function(){
       //console.log('hi');
       now.distributeMessage('take-picture');
+      $('#processing strong').text("Processing...");
       $('#polaroid').removeClass('show');
       $('body').addClass('processing');
     });
 
     $('#polaroid').bind('touchstart', function(){
       //console.log('hi');
-      now.distributeMessage('toggle-camera')
+      now.distributeMessage('toggle-camera');
+      $('#processing strong').text("");
+      $('#polaroid').removeClass('show');
+      $('body').addClass('processing');
     });
 
     now.receiveMessage = function(name, command){
