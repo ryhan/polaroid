@@ -309,7 +309,14 @@ ul{
 }
 
 #polaroid.show{
+  opacity: 1;
   -webkit-transform: translateY(0px);
+  -webkit-transition: -webkit-transform 0.5s ease-in-out;
+}
+
+#polaroid.onscreen{
+  opacity: 0;
+  -webkit-transform: translateY(-600px) !important;
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
 }
 
@@ -362,6 +369,7 @@ $(document).ready(function(){
       now.distributeMessage('take-picture');
       $('#processing strong').text("Processing...");
       $('#polaroid').removeClass('show');
+      $('#polaroid').removeClass('onscreen');
       $('body').addClass('processing');
     });
 
@@ -369,8 +377,10 @@ $(document).ready(function(){
       //console.log('hi');
       now.distributeMessage('toggle-camera');
       $('#processing strong').text("");
+      $('#polaroid').addClass('onscreen');
       $('#polaroid').removeClass('show');
       $('body').addClass('processing');
+      setTimeout(function(){ $('#polaroid').css('opacity', 0); }, 200);
     });
 
     now.receiveMessage = function(name, command){
