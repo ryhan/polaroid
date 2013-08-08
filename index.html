@@ -342,8 +342,13 @@ $(document).ready(function(){
         $('#content').toggleClass('camera-mode');
       }
       if (command == 'take-picture'){
-        snapshot();
-        now.distributeMessage($('canvas')[0].toDataURL('image/jpeg', 1));
+        if ($('#content').hasClass('camera-mode')){
+          snapshot();
+          now.distributeMessage($('canvas')[0].toDataURL('image/jpeg', 1));
+          $('#content').removeClass('camera-mode');
+        }else{
+          $('#content').addClass('camera-mode');
+        }
       }
     }
   });
