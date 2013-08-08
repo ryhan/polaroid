@@ -302,6 +302,10 @@ ul{
 
   -webkit-transform: translateY(500px);
   -webkit-transition: -webkit-transform 0.5s ease-in-out;
+
+  height: 400px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 #polaroid.show{
@@ -334,6 +338,15 @@ $(function() {
 
 $(document).ready(function(){
 
+  // Fake it
+  /*
+  $('body').removeClass('disconnected');
+  $('#streaming p').text('Connected to "Ryhan\'s Display"');
+  $('#polaroid').css('opacity', 1);
+  $('#polaroid img')[0].src = "foo";
+  $('#polaroid').addClass('show');
+  */
+
   now.ready(function(){
 
     $('body').removeClass('disconnected');
@@ -363,8 +376,6 @@ $(document).ready(function(){
         $('#polaroid').css('opacity', 1);
         $('#polaroid img')[0].src = command;
         $('#polaroid').addClass('show');
-
-        $('#photos img')[0].src = command;
       }
     }
 
